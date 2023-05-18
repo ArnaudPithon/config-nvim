@@ -43,10 +43,19 @@ Plug 'Shougo/denite.nvim'
 " Print function signatures in echo area
 "Plug 'Shougo/echodoc.vim'
 
+" support for expanding abbreviations (CSS, HTML, …)
+Plug 'mattn/emmet-vim'
+" automatically rename closing HTML/XML tags
+Plug 'AndrewRadev/tagalong.vim'
+" Attention à ALE - Il serait en conflit avec COC.nvim
+" ALE (Asynchronous Lint Engine) provide linting (syntax checking and semantic errors)
+" while you edit your text files, and acts as a Vim Language Server Protocol client.
+Plug 'dense-analysis/ale'
+
 " === Git Plugins === "
 " Enable git changes to be shown in sign column
-"Plug 'mhinz/vim-signify'
-"Plug 'tpope/vim-fugitive'
+Plug 'mhinz/vim-signify'
+Plug 'tpope/vim-fugitive'
 
 " === Javascript Plugins === "
 " Typescript syntax highlighting

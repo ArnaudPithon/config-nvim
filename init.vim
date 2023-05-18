@@ -1,3 +1,6 @@
+" ~/.config/nvim/init.vim
+" Maintainer: icarios <arnaud AT icarios DOT net>
+
 scriptencoding utf-8
 
 " Destiné à être supprimé quand la transition sera complète.
@@ -113,6 +116,27 @@ let g:NERDTreeDirArrowCollapsible = '⬎'
 
 " Hide certain files and directories from NERDTree
 let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$']
+
+" Emmet {{{
+" Limite l'utilisation d'Emmet aux buffers html et css
+let g:user_emmet_install_global = 0
+autocmd FileType html,css EmmetInstall
+" Changement de la combinaison leader
+let g:user_emmet_leader_key=','
+let g:emmet_html5 = 0
+let g:user_emmet_settings = {
+      \ 'indentation' : '  ',
+      \ 'variables' : {
+      \      'lang': 'fr',
+      \},
+      \ 'html' : {
+      \       'empty_element_suffix': ' />',
+      \},
+\}
+" }}}
+
+" Tagalong
+let g:tagalong_verbose = 1
 
 " ============================================================================ "
 " ===                             KEY MAPPINGS                             === "
