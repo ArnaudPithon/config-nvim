@@ -1,6 +1,18 @@
+scriptencoding utf-8
+
+" Destiné à être supprimé quand la transition sera complète.
 set runtimepath^=~/.config/vim runtimepath+=~/.config/vim/after
 let &packpath = &runtimepath
 source ~/.config/vim/vimrc
+
+source ~/.config/nvim/plugins.vim
+
+" highlight current cursor line
+set cursorline
+
+" ============================================================================ "
+" ===                           PLUGIN SETUP                               === "
+" ============================================================================ "
 
 " Wrap in try/catch to avoid errors on initial install before plugin is available
 try
@@ -88,6 +100,24 @@ endfunction
 "Close preview window when completion is done.
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
+" === NERDTree === "
+" Show hidden files/directories
+let g:NERDTreeShowHidden = 1
+
+" Remove bookmarks and help text from NERDTree
+let g:NERDTreeMinimalUI = 1
+
+" Custom icons for expandable/expanded directories
+let g:NERDTreeDirArrowExpandable = '⬏'
+let g:NERDTreeDirArrowCollapsible = '⬎'
+
+" Hide certain files and directories from NERDTree
+let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$']
+
+" ============================================================================ "
+" ===                             KEY MAPPINGS                             === "
+" ============================================================================ "
+
 " === Denite shorcuts === "
 "   ;         - Browser currently open buffers
 "   <leader>t - Browse list of files in current directory
@@ -155,6 +185,17 @@ function! s:denite_my_settings() abort
   nnoremap <silent><buffer><expr> <C-s>
   \ denite#do_map('do_action', 'split')
 endfunction
+
+" === Nerdtree shorcuts === "
+"  <leader>n - Toggle NERDTree on/off
+"  <leader>f - Opens current file location in NERDTree
+nmap <leader>n :NERDTreeToggle<CR>
+nmap <leader>f :NERDTreeFind<CR>
+
+"   <Space> - PageDown
+"   -       - PageUp
+noremap <Space> <PageDown>
+noremap - <PageUp>
 
 " === coc.nvim === "
 "   <leader>dd    - Jump to definition of current symbol
