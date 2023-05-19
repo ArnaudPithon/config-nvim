@@ -221,6 +221,23 @@ nmap <leader>f :NERDTreeFind<CR>
 noremap <Space> <PageDown>
 noremap - <PageUp>
 
+let NERDTreeMapActivateNode = 'l'
+let NERDTreeMapPreview = 'gl'
+let NERDTreeMapOpenInTab = 'è'
+let NERDTreeMapOpenInTabSilent = 'È'
+let NERDTreeMapOpenSplit = 'h'
+let NERDTreeMapPreviewSplit = 'H'
+let NERDTreeMapOpenVSplit = 'v'
+let NERDTreeMapPreviewVSplit = 'V'
+let NERDTreeMapJumpFirstChild = 'S'
+let NERDTreeMapJumpLastChild = 'T'
+let NERDTreeMapJumpPrevSibling = '<C-s>'
+let NERDTreeMapJumpNextSibling = '<C-t>'
+let NERDTreeMapRefresh = 'o'
+let NERDTreeMapRefreshRoot = 'O'
+let NERDTreeMenuUp = 's'
+let NERDTreeMenuDown = 't'
+
 " === coc.nvim === "
 "   <leader>dd    - Jump to definition of current symbol
 "   <leader>dr    - Jump to references of current symbol
