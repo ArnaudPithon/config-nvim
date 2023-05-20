@@ -138,6 +138,12 @@ let g:user_emmet_settings = {
 " Tagalong
 let g:tagalong_verbose = 1
 
+" plugin UltiSnips {{{
+let g:UltiSnipsExpandTrigger = "<S-Tab>"
+let g:UltiSnipsJumpForwardTrigger = "<c-r>"
+let g:UltiSnipsJumpBackwardTrigger  = "<c-c>"
+" }}}
+
 " ============================================================================ "
 " ===                             KEY MAPPINGS                             === "
 " ============================================================================ "

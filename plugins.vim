@@ -37,8 +37,8 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'Shougo/denite.nvim'
 
 " Snippet support
-"Plug 'Shougo/neosnippet'
-"Plug 'Shougo/neosnippet-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 " Print function signatures in echo area
 "Plug 'Shougo/echodoc.vim'
@@ -84,6 +84,8 @@ Plug 'scrooloose/nerdtree'
 
 " Colorscheme
 Plug 'mhartington/oceanic-next'
+Plug 'ful1e5/onedark.nvim'
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 
 " Customized vim status line
 "Plug 'vim-airline/vim-airline'
