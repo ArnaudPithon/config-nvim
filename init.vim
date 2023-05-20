@@ -13,6 +13,16 @@ source ~/.config/nvim/plugins.vim
 " highlight current cursor line
 set cursorline
 
+syntax on
+let g:oceanic_next_terminal_bold = 1
+let g:oceanic_next_terminal_italic = 1
+colorscheme OceanicNext
+" Si le terminal est capable de transparence.
+"hi Normal guibg=NONE ctermbg=NONE
+"hi LineNr guibg=NONE ctermbg=NONE
+"hi SignColumn guibg=NONE ctermbg=NONE
+"hi EndOfBuffer guibg=NONE ctermbg=NONE
+
 " ============================================================================ "
 " ===                           PLUGIN SETUP                               === "
 " ============================================================================ "
@@ -143,6 +153,8 @@ let g:UltiSnipsExpandTrigger = "<S-Tab>"
 let g:UltiSnipsJumpForwardTrigger = "<c-r>"
 let g:UltiSnipsJumpBackwardTrigger  = "<c-c>"
 " }}}
+
+let g:deoplete#enable_at_startup = 1
 
 " ============================================================================ "
 " ===                             KEY MAPPINGS                             === "
