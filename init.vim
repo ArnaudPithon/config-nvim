@@ -13,6 +13,9 @@ source ~/.config/nvim/plugins.vim
 " highlight current cursor line
 set cursorline
 
+" Pour éviter son apparition/disparition contextuelle
+set signcolumn=yes
+
 syntax on
 let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
