@@ -26,6 +26,58 @@ colorscheme OceanicNext
 "hi SignColumn guibg=NONE ctermbg=NONE
 "hi EndOfBuffer guibg=NONE ctermbg=NONE
 
+" AutoCommandes {{{1
+
+if has("autocmd")
+  filetype plugin indent on
+
+  augroup vimrc
+    autocmd!
+  augroup END
+
+  autocmd! vimrc BufNewFile * silent! @r ~/.config/nvim/templates/skeleten.%:e
+
+  " When editing a file, always jump to the last known cursor position.
+  " Don't do it when the position is invalid or when inside an event handler
+  " (happens when dropping a file on gvim).
+  " Also don't do it when the mark is in the first line, that is the default
+  " position when opening a file.
+  autocmd vimrc BufReadPost *
+    \ if line("'\"") > 1 && line("'\"") <= line("$") |
+    \   exe "normal! g`\"" |
+    \ endif
+
+  " If buffer modified, update any 'Last modified: ' in the first 20 lines.
+  " 'Last modified: ' can have up to 10 characters before (they are
+  " retained).
+  " Restores cursor and window position using save_cursor variable.
+  " source http://vim.wikia.com/wiki/Insert_current_date_or_time
+  function! LastModified() " {{{2
+    "let s:formatDate = '%a %b %d, %Y  %I:%M%p'
+    let s:formatDate = '%F %T%z' " ISO8601
+    if &modified
+      let save_cursor = getpos(".")
+      let n = min([20, line("$")])
+      keepjumps exe '1,' . n . 's#^\(.\{,10}Last modified: \).*#\1' .
+            \ strftime(s:formatDate) . '#e'
+      call histdel('search', -1)
+      call setpos('.', save_cursor)
+    endif
+  endfun " }}}2
+  autocmd vimrc BufWritePre * call LastModified()
+
+  "autocmd vimrc BufReadCmd *.epub call zip#Browse(expand("<amatch>"))
+
+  " Prend en compte immédiatement les modifications
+  autocmd vimrc BufWritePost $XDG_CONFIG_HOME/nvim/init.vim source $XDG_CONFIG_HOME/nvim/init.vim
+
+  " Met en valeur la fenêtre ayant le focus.
+  autocmd vimrc WinEnter * :setl cursorline
+  autocmd vimrc WinLeave * :setl nocursorline
+endif " has("autocmd")
+
+" }}}
+
 " ============================================================================ "
 " ===                           PLUGIN SETUP                               === "
 " ============================================================================ "
@@ -295,3 +347,5 @@ nmap <silent> <leader>dr <Plug>(coc-references)
 nmap <silent> <leader>dj <Plug>(coc-implementation)
 nnoremap <silent> <leader>ds :<C-u>CocList -I -N --top symbols<CR>
 
+set secure
+" nvim: foldmethod=marker expandtab ts=2 sw=2 nowrap
