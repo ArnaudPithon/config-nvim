@@ -157,7 +157,33 @@ let g:UltiSnipsJumpForwardTrigger = "<c-r>"
 let g:UltiSnipsJumpBackwardTrigger  = "<c-c>"
 " }}}
 
+" 
 let g:deoplete#enable_at_startup = 1
+
+" Startify
+" Éviter un warning lors d'un chargement d'une session oà NERDTree était
+" ouvert.
+let g:startify_session_before_save = [
+      \ 'silent! NERDTreeClose'
+      \ ]
+
+function! s:gitModifiedUntracked()
+  let files = systemlist('git ls-files -m -o --exclude-standard 2>/dev/null')
+  return map(files, "{'line': v:val, 'path': v:val}")
+endfunction
+
+let g:startify_lists = [
+      \ { 'type': 'sessions',  'header': ['   Sessions']       },
+      \ { 'type': 'dir',       'header': ['   MRU '. getcwd()] },
+      \ { 'type': function('s:gitModifiedUntracked'),  'header': ['   git untracked and modified']},
+      \ ]
+
+" don't change the working directory
+let g:startify_change_to_dir = 0
+let g:startify_update_oldfiles = 1
+let g:startify_session_persistence = 1
+let g:startify_session_sort = 1
+
 
 " ============================================================================ "
 " ===                             KEY MAPPINGS                             === "

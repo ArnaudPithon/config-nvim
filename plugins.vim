@@ -101,5 +101,8 @@ Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 Plug 'ryanoasis/vim-devicons'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
+" start screen
+Plug 'mhinz/vim-startify'
+
 " Initialize plugin system
 call plug#end()
