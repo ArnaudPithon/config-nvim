@@ -35,7 +35,7 @@ if has("autocmd")
     autocmd!
   augroup END
 
-  autocmd! vimrc BufNewFile * silent! @r ~/.config/nvim/templates/skeleten.%:e
+  autocmd! vimrc BufNewFile * silent! 0r ~/.config/nvim/templates/skeleton.%:e
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
