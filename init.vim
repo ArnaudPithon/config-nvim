@@ -207,6 +207,11 @@ let g:tagalong_verbose = 1
 let g:UltiSnipsExpandTrigger = "<S-Tab>"
 let g:UltiSnipsJumpForwardTrigger = "<c-r>"
 let g:UltiSnipsJumpBackwardTrigger  = "<c-c>"
+let g:UltiSnips_javascript = {
+      \ 'keyword-spacing': 'always',
+      \ 'semi': 'always',
+      \ 'space-before-function-param': 'never',
+      \ }
 " }}}
 
 " 
