@@ -83,6 +83,8 @@ Plug 'othree/yajs.vim'
 " Recommended for OceanicNext
 Plug 'othree/html5.vim'
 
+Plug 'nikvdp/ejs-syntax'
+
 
 " === UI === "
 " File explorer
@@ -103,6 +105,8 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 
 " start screen
 Plug 'mhinz/vim-startify'
+
+Plug 'vimwiki/vimwiki'
 
 " Initialize plugin system
 call plug#end()
