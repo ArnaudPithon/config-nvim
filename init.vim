@@ -1,6 +1,9 @@
 " ~/.config/nvim/init.vim
 " Maintainer: icarios <arnaud AT icarios DOT net>
 
+" Options {{{1
+" portée globale {{{2
+
 scriptencoding utf-8
 
 " Destiné à être supprimé quand la transition sera complète.
@@ -10,16 +13,50 @@ source ~/.config/vim/vimrc
 
 source ~/.config/nvim/plugins.vim
 
+" suffixes {{{3
+" Files with these suffixes get a lower priority when multiple files match a
+" wildcard.
+set suffixes+=.aux,.log,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
+set suffixes+=.dvi,.ps,.pdf
+" image formats
+set suffixes+=.jpg,.jpeg,.gif,.bmp,.pbm,.pgm,.ppm,.tga,.xbm,.xpm,.tif,.tiff,.png,.fli,.gl,.dl,.xcf,.xwd,.svg
+" audio formats
+set suffixes+=.ogg,.mp3,.wav,.mka,.flac
+" video formats
+set suffixes+=.mpg,.mpeg,.avi,.ogm,.ogv,.m2v,.wmv,.VOB,.mkv,.m2t,.ts,.flv,.mp4"}}}
+" suffixes }}}3
+
+" ligne de statut {{{3
+" Voir l'option "statusline" pour régler plus en détail.
+set showmode
+set showcmd
+set ruler
+" ligne de statut }}}3
+
+" recherche {{{3
+set incsearch
+set ignorecase smartcase
+if &t_Co > 2 || has("gui_running")
+  set hlsearch
+endif
+" recherche }}}3
+
 " highlight current cursor line
 set cursorline
 
 " Pour éviter son apparition/disparition contextuelle
 set signcolumn=yes
 
+" folding
+set foldcolumn=3
+
 syntax on
 let g:oceanic_next_terminal_bold = 1
 let g:oceanic_next_terminal_italic = 1
 colorscheme OceanicNext
+if (has("termguicolors"))
+  set termguicolors
+endif
 " Si le terminal est capable de transparence.
 "hi Normal guibg=NONE ctermbg=NONE
 "hi LineNr guibg=NONE ctermbg=NONE
@@ -36,6 +73,8 @@ if has("autocmd")
   augroup END
 
   autocmd! vimrc BufNewFile * silent! 0r ~/.config/nvim/templates/skeleton.%:e
+
+  "au BufNewFile,BufRead *.ejs set filetype=ejs
 
   " When editing a file, always jump to the last known cursor position.
   " Don't do it when the position is invalid or when inside an event handler
@@ -175,17 +214,13 @@ let g:NERDTreeShowHidden = 1
 " Remove bookmarks and help text from NERDTree
 let g:NERDTreeMinimalUI = 1
 
-" Custom icons for expandable/expanded directories
-let g:NERDTreeDirArrowExpandable = '⬏'
-let g:NERDTreeDirArrowCollapsible = '⬎'
-
 " Hide certain files and directories from NERDTree
 let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$']
 
 " Emmet {{{
 " Limite l'utilisation d'Emmet aux buffers html et css
 let g:user_emmet_install_global = 0
-autocmd FileType html,css EmmetInstall
+autocmd FileType html,css,ejs EmmetInstall
 " Changement de la combinaison leader
 let g:user_emmet_leader_key=','
 let g:emmet_html5 = 0
@@ -241,6 +276,71 @@ let g:startify_update_oldfiles = 1
 let g:startify_session_persistence = 1
 let g:startify_session_sort = 1
 
+" ALE
+let g:ale_linters = {
+      \   'javascript': ['eslint'],
+      \}
+let g:ale_fixers = {'javascript': ['prettier_eslint']}
+
+" plugin vimwiki {{{
+" Le reste de la conf: <url:./ftplugin/vimwiki.vim>
+  let wiki = {}
+  let wiki.path = '~/Documents/wikis/main/'
+  let wiki.nested_syntaxes = {'python': 'python', 'sh': 'sh',
+        \ 'lisp': 'lisp', 'vim': 'vim', 'perl': 'perl',
+        \ 'ruby': 'ruby', 'roff': 'nroff', 'js': 'javascript'}
+  let wiki.ext = '.w'
+
+  let DwarfFortress = {}
+  let DwarfFortress.path = '~/Documents/jeux/Dwarf_Fortress/vimwiki/'
+  let DwarfFortress.ext = '.w'
+
+  let simulation = {}
+  let simulation.path = '~/Documents/wikis/simulation'
+  let simulation.ext = '.w'
+
+  let Pokemon = {}
+  let Pokemon.path = '~/Documents/jeux/Pokémon/vimwiki/'
+  let Pokemon.ext = '.w'
+
+  let eros = {}
+  let eros.path = '~/Documents/livres/eros/vimwiki/'
+  let eros.ext = '.w'
+
+  let dev = {}
+  let dev.path = '~/Documents/wikis/dev/'
+  let dev.ext = '.md'
+  let dev.nested_syntaxes = {'python': 'python', 'sh': 'sh',
+        \ 'lisp': 'lisp', 'vim': 'vim', 'perl': 'perl',
+        \ 'ruby': 'ruby', 'roff': 'nroff', 'js': 'javascript'}
+
+  let g:vimwiki_list = [wiki, dev, DwarfFortress, simulation, Pokemon, eros]
+  let g:vimwiki_ext2syntax = {'.w': 'default',
+        \ '.md': 'markdown', '.mkdn': 'markdown',
+        \ '.mdwn': 'markdown', '.mdown': 'markdown',
+        \ '.markdown': 'markdown', '.mw': 'media'}
+
+  " Je désactive table_mappings pour éviter qu'ils n'entrent en conflict avec
+  " mon utilisation de Tab -> ESC et S-Tab -> Tab
+  let g:vimwiki_key_mappings =
+        \ {
+        \   'all_maps': 1,
+        \   'global': 1,
+        \   'headers': 1,
+        \   'text_objs': 1,
+        \   'table_format': 1,
+        \   'table_mappings': 0,
+        \   'lists': 1,
+        \   'links': 1,
+        \   'html': 1,
+        \   'mouse': 0,
+        \ }
+
+
+  " BUG: Je ne comprends pas pourquoi ça ne fonctionne pas.
+  " TODO: Est-ce toujours vrai ?
+  let g:vimwiki_global_ext = 0
+" }}}
 
 " ============================================================================ "
 " ===                             KEY MAPPINGS                             === "
