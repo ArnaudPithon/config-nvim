@@ -453,4 +453,4 @@ nmap <silent> <leader>dj <Plug>(coc-implementation)
 nnoremap <silent> <leader>ds :<C-u>CocList -I -N --top symbols<CR>
 
 set secure
-" nvim: foldmethod=marker expandtab ts=2 sw=2 nowrap
+" vim: foldmethod=marker expandtab ts=2 sw=2 nowrap
