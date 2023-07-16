@@ -208,7 +208,7 @@ endfunction
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
 " === nvim-tree === "
-lua require('lua/plug/nvim-tree')
+lua require('plug/nvim-tree')
 " Pour une raison inconnue, je dois définir ce raccourci ici plutôt que dans
 " la conf de nvim-tree
 lua vim.keymap.set('n', '<leader>n', ':NvimTreeToggle<CR>', {noremap = true})
