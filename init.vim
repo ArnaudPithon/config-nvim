@@ -207,6 +207,12 @@ endfunction
 "Close preview window when completion is done.
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
+" === nvim-tree === "
+lua require('lua/plug/nvim-tree')
+" Pour une raison inconnue, je dois définir ce raccourci ici plutôt que dans
+" la conf de nvim-tree
+lua vim.keymap.set('n', '<leader>n', ':NvimTreeToggle<CR>', {noremap = true})
+
 " === NERDTree === "
 " Show hidden files/directories
 let g:NERDTreeShowHidden = 1
@@ -253,7 +259,7 @@ let g:UltiSnips_javascript = {
 let g:deoplete#enable_at_startup = 1
 
 " Startify
-" Éviter un warning lors d'un chargement d'une session oà NERDTree était
+" Éviter un warning lors d'un chargement d'une session où NERDTree était
 " ouvert.
 let g:startify_session_before_save = [
       \ 'silent! NERDTreeClose'
@@ -417,8 +423,8 @@ endfunction
 " === Nerdtree shorcuts === "
 "  <leader>n - Toggle NERDTree on/off
 "  <leader>f - Opens current file location in NERDTree
-nmap <leader>n :NERDTreeToggle<CR>
-nmap <leader>f :NERDTreeFind<CR>
+"nmap <leader>n :NERDTreeToggle<CR>
+"nmap <leader>f :NERDTreeFind<CR>
 
 "   <Space> - PageDown
 "   -       - PageUp

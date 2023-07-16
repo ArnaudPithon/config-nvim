@@ -88,7 +88,8 @@ Plug 'nikvdp/ejs-syntax'
 
 " === UI === "
 " File explorer
-Plug 'scrooloose/nerdtree'
+"Plug 'scrooloose/nerdtree'
+Plug 'nvim-tree/nvim-tree.lua'
 
 " Colorscheme
 Plug 'mhartington/oceanic-next'
