@@ -61,22 +61,28 @@ Plug 'mhinz/vim-signify'
 Plug 'tpope/vim-fugitive'
 
 " === Javascript Plugins === "
+" syntax highlighting plugin for JavaScript and Flow.js
+Plug 'yuezk/vim-js'
+
 " Typescript syntax highlighting
 Plug 'HerringtonDarkholme/yats.vim'
 
 " ReactJS JSX syntax highlighting
-"Plug 'mxw/vim-jsx'
+Plug 'maxmellon/vim-jsx-pretty'
 
 " Generate JSDoc commands based on function signature
-"Plug 'heavenshell/vim-jsdoc'
+Plug 'heavenshell/vim-jsdoc', {
+      \ 'for': ['javascript', 'javascript.jsx','typescript'],
+      \ 'do': 'make install'
+      \}
+
+" Syntax highlighting for javascript libraries
+Plug 'othree/javascript-libraries-syntax.vim'
 
 " === Syntax Highlighting === "
 
 " Syntax highlighting for nginx
 Plug 'chr4/nginx.vim'
-
-" Syntax highlighting for javascript libraries
-Plug 'othree/javascript-libraries-syntax.vim'
 
 " Improved syntax highlighting and indentation
 Plug 'othree/yajs.vim'
@@ -84,6 +90,9 @@ Plug 'othree/yajs.vim'
 Plug 'othree/html5.vim'
 
 Plug 'nikvdp/ejs-syntax'
+
+" postgres
+Plug 'lifepillar/pgsql.vim'
 
 
 " === UI === "
@@ -107,6 +116,7 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 " start screen
 Plug 'mhinz/vim-startify'
 
+" === Others ===
 Plug 'vimwiki/vimwiki'
 
 " Initialize plugin system
