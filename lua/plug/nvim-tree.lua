@@ -14,8 +14,10 @@ local function my_on_attach(bufnr)
   vim.keymap.set('n', '<C-s>', api.node.open.horizontal, opts('Open: Horizontal Split'))
   vim.keymap.set('n', 'T',     api.node.navigate.sibling.last,        opts('Last Sibling'))
   vim.keymap.set('n', 'S',     api.node.navigate.sibling.first,       opts('First Sibling'))
-  vim.keymap.set('n', 's',     api.tree.search_node,                  opts('Search'))
-  vim.keymap.set('n', 'é',     api.node.run.system,                   opts('Run System'))
+  --vim.keymap.set('n', 't',     api.node.navigate.sibling.next,        opts('Next Sibling'))
+  vim.keymap.set('n', 's',     api.node.navigate.sibling.prev,        opts('Previous Sibling'))
+  vim.keymap.set('n', 'u',     api.tree.search_node,                  opts('Search'))
+  vim.keymap.set('n', 'b',     api.node.run.system,                   opts('Run System'))
 end
 
 require("nvim-tree").setup({
