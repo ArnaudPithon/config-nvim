@@ -43,14 +43,8 @@ opt.cursorline = true
 opt.signcolumn = "yes"
 -- folding
 opt.foldcolumn = "3"
--- 
-opt.termguicolors = true
-
--- Couleurs
---vim.cmd.colorscheme("OceanicNext")
 
 opt.cpoptions:append "W"
-
 
 -- -- Mode de complétion
 opt.wildmenu = true
