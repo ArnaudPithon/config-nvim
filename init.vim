@@ -207,6 +207,12 @@ endfunction
 "Close preview window when completion is done.
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
 
+" === nvim-tree === "
+lua require('plug/nvim-tree')
+" Pour une raison inconnue, je dois définir ce raccourci ici plutôt que dans
+" la conf de nvim-tree
+lua vim.keymap.set('n', '<leader>n', ':NvimTreeToggle<CR>', {noremap = true})
+
 " === NERDTree === "
 " Show hidden files/directories
 let g:NERDTreeShowHidden = 1
@@ -218,9 +224,9 @@ let g:NERDTreeMinimalUI = 1
 let g:NERDTreeIgnore = ['^\.DS_Store$', '^tags$', '\.git$[[dir]]', '\.idea$[[dir]]', '\.sass-cache$']
 
 " Emmet {{{
-" Limite l'utilisation d'Emmet aux buffers html et css
+" Limite l'utilisation d'Emmet à certains buffers
 let g:user_emmet_install_global = 0
-autocmd FileType html,css,ejs EmmetInstall
+autocmd FileType html,xhtml,css,scss,ejs,typescriptreact,javascriptreact EmmetInstall
 " Changement de la combinaison leader
 let g:user_emmet_leader_key=','
 let g:emmet_html5 = 0
@@ -240,8 +246,8 @@ let g:tagalong_verbose = 1
 
 " plugin UltiSnips {{{
 let g:UltiSnipsExpandTrigger = "<S-Tab>"
-let g:UltiSnipsJumpForwardTrigger = "<c-r>"
-let g:UltiSnipsJumpBackwardTrigger  = "<c-c>"
+let g:UltiSnipsJumpForwardTrigger = "<c-t>"
+let g:UltiSnipsJumpBackwardTrigger  = "<c-s>"
 let g:UltiSnips_javascript = {
       \ 'keyword-spacing': 'always',
       \ 'semi': 'always',
@@ -253,7 +259,7 @@ let g:UltiSnips_javascript = {
 let g:deoplete#enable_at_startup = 1
 
 " Startify
-" Éviter un warning lors d'un chargement d'une session oà NERDTree était
+" Éviter un warning lors d'un chargement d'une session où NERDTree était
 " ouvert.
 let g:startify_session_before_save = [
       \ 'silent! NERDTreeClose'
@@ -417,8 +423,8 @@ endfunction
 " === Nerdtree shorcuts === "
 "  <leader>n - Toggle NERDTree on/off
 "  <leader>f - Opens current file location in NERDTree
-nmap <leader>n :NERDTreeToggle<CR>
-nmap <leader>f :NERDTreeFind<CR>
+"nmap <leader>n :NERDTreeToggle<CR>
+"nmap <leader>f :NERDTreeFind<CR>
 
 "   <Space> - PageDown
 "   -       - PageUp
@@ -451,6 +457,14 @@ nmap <silent> <leader>dd <Plug>(coc-definition)
 nmap <silent> <leader>dr <Plug>(coc-references)
 nmap <silent> <leader>dj <Plug>(coc-implementation)
 nnoremap <silent> <leader>ds :<C-u>CocList -I -N --top symbols<CR>
+
+" === copilot mapping ===
+" Esc à la place de Tab pour accepter la suggestion de Copilot
+imap <silent><script><expr> <Esc> copilot#Accept("\<CR>")
+let g:copilot_no_tab_map = v:true
+
+" Dismiss noice message
+nmap <silent> <leader>nd <cmd>NoiceDismiss<CR>
 
 set secure
 " vim: foldmethod=marker expandtab ts=2 sw=2 nowrap

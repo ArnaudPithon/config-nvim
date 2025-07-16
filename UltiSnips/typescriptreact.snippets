@@ -1,0 +1,14 @@
+snippet fc "React function component"
+`!p
+name = snip.basename
+`
+import './${1:`!p snip.rv = name`}.scss';
+
+export default function `!p snip.rv = name`() {
+  return (
+    <${2:div} className="`!p snip.rv = name.lower()`">
+      ${3}
+    </${4:div}>
+  );
+}
+endsnippet
