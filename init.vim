@@ -460,7 +460,8 @@ nnoremap <silent> <leader>ds :<C-u>CocList -I -N --top symbols<CR>
 
 " === copilot mapping ===
 " Esc à la place de Tab pour accepter la suggestion de Copilot
-imap <silent><script><expr> <Esc> copilot#Accept("\<CR>")
+" map pour copilot.vim
+"imap <silent><script><expr> <Esc> copilot#Accept("\<CR>")
 let g:copilot_no_tab_map = v:true
 
 " Dismiss noice message

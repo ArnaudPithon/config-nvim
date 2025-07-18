@@ -148,7 +148,7 @@ call plug#end()
 
 lua require("noice").setup()
 "lua require("copilot_cmp").setup()
-lua require("copilot").setup({ suggestion = { enabled = true }, panel = { enabled = true }, })
+lua require("copilot").setup({ panel = { enabled = false }, suggestion = { enabled = true, keymap = { prev = "<M-]>", next = "<M-~>", }, }, filetypes = { gitcommit = true }, })
 lua <<EOF
   -- Set up nvim-cmp.
   local cmp = require'cmp'
