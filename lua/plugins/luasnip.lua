@@ -34,6 +34,6 @@ return {
     })
   end,
   keys = {
-      {"<leader>es", "<cmd>LuaSnipEdit<CR>", desc = "Edit snippets"},
+    { "<leader>es", "<cmd>LuaSnipEdit<CR>", desc = "Edit snippets" },
   },
 }
