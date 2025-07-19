@@ -6,5 +6,5 @@ debug
 foo.*
 *.log
 data
-lazi-lock.json
+lazy-lock.json
 spell/
