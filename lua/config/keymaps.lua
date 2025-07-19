@@ -86,15 +86,15 @@ map("n", "H", "C", default_opts)
 map("n", "l", "r", default_opts)
 map("n", "L", "R", default_opts)
 --  {K} = « Substitue »          (k = caractère, K = ligne)
-map("n", "k", "s", default_opts)
-map("n", "K", "S", default_opts)
+map_ctsr("k", "s", "Up")
+map_ctsr("K", "S", "Up")
 --  Corollaire : correction orthographique
 map("n", "]k", "]s", default_opts)
 map("n", "[k", "[s", default_opts)
 --  <URL:vimhelp:K>
 map("n", "S", "K", default_opts)
 --  Évite un conflit avec le plugin manpageview
-vim.api.nvim_del_keymap("n", "K")
+--vim.api.nvim_del_keymap("n", "K")
 
 --  Désambiguation de {g}
 --  —————————————————————
