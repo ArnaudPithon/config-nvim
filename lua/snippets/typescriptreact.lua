@@ -38,7 +38,7 @@ end
 return {
   -- React function component
   s({
-    trig = "rfc",
+    trig = "rc",
     name = "React Component",
     dscr = "Create a React component with TypeScript",
   }, {
