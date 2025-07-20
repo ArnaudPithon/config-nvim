@@ -11,7 +11,7 @@ return {
     {
       trig = "log",
       name = "console.log",
-      descr = "Log en console",
+      dscr = "Log en console",
     },
     fmt("console.log({});\n{}", {
       i(1, '"debug"'),
@@ -27,7 +27,7 @@ return {
     {
       trig = "ler",
       name = "console.error",
-      descr = "Log d'erreur en console",
+      dscr = "Log d'erreur en console",
     },
     fmt("console.error({});\n{}", {
       i(1, '"error"'),
@@ -43,7 +43,7 @@ return {
     {
       trig = "logf",
       name = "log contextuel",
-      descr = "Log contextuel en console",
+      dscr = "Log contextuel en console",
     },
     fmt('console.log("{}", {});\n{}', {
       f(function()
