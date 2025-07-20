@@ -1,7 +1,7 @@
 return {
   "L3MON4D3/LuaSnip",
   dependencies = {
-    "rafamadriz/friendly-snippets", -- tu peux le garder ou virer
+    --"rafamadriz/friendly-snippets", -- tu peux le garder ou virer
   },
   config = function()
     local ls = require("luasnip")
@@ -20,9 +20,10 @@ return {
 
     -- Commande : éditer le fichier de snippets du filetype courant
     vim.api.nvim_create_user_command("LuaSnipEdit", function()
-      local ft = vim.bo.filetype
-      local path = vim.fn.stdpath("config") .. "/lua/snippets/" .. ft .. ".lua"
-      vim.cmd("edit " .. path)
+      require("luasnip.loaders").edit_snippet_files({
+        paths = my_snippets_path,
+        filetype = vim.bo.filetype,
+      })
     end, { desc = "Edit LuaSnip snippet file for current filetype" })
 
     -- 🔁 Recharger automatiquement tes snippets quand tu sauvegardes
@@ -35,5 +36,14 @@ return {
   end,
   keys = {
     { "<leader>es", "<cmd>LuaSnipEdit<CR>", desc = "Edit snippets" },
+    {
+      "<C-s>",
+      function()
+        local ls = require("luasnip")
+        ls.expand_or_jump()
+      end,
+      mode = "i",
+      desc = "Expand or jump in snippet",
+    },
   },
 }
