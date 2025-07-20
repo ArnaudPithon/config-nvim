@@ -3,38 +3,57 @@ local s = ls.snippet
 local i = ls.insert_node
 local f = ls.function_node
 local fmt = require("luasnip.extras.fmt").fmt
+local conds = require("luasnip.extras.expand_conditions")
 
 return {
-  s("hello", i(1, "world")),
-
   -- log
   s(
-    "log",
+    {
+      trig = "log",
+      name = "console.log",
+      descr = "Log en console",
+    },
     fmt("console.log({});\n{}", {
       i(1, '"debug"'),
-      i(2),
-    })
+      i(0),
+    }),
+    {
+      condition = conds.line_begin,
+    }
   ),
 
   -- error
   s(
-    "ler",
+    {
+      trig = "ler",
+      name = "console.error",
+      descr = "Log d'erreur en console",
+    },
     fmt("console.error({});\n{}", {
       i(1, '"error"'),
-      i(2),
-    })
+      i(0),
+    }),
+    {
+      condition = conds.line_begin,
+    }
   ),
 
-  -- log contextuel
   -- ex : console.log("app.js", myVar);
   s(
-    "logf",
+    {
+      trig = "logf",
+      name = "log contextuel",
+      descr = "Log contextuel en console",
+    },
     fmt('console.log("{}", {});\n{}', {
       f(function()
         return vim.fn.expand("%:t")
       end, {}),
       i(1, "value"),
-      i(2),
-    })
+      i(0),
+    }),
+    {
+      condition = conds.line_begin,
+    }
   ),
 }
