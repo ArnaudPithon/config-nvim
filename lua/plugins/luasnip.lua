@@ -1,49 +1,9 @@
 return {
   "L3MON4D3/LuaSnip",
   dependencies = {
-    --"rafamadriz/friendly-snippets", -- tu peux le garder ou virer
+    --"rafamadriz/friendly-snippets", -- désactivé dans `./_disabled.lua`
   },
   config = function()
-    local ls = require("luasnip")
-    local loader = require("luasnip.loaders.from_lua")
-
-    -- Chemin vers ton dossier perso de snippets
-    local my_snippets_path = vim.fn.stdpath("config") .. "/lua/snippets"
-
-    -- Chargement initial
-    loader.lazy_load({ paths = my_snippets_path })
-
-    -- ⛓️ Partage des snippets entre langages
-    ls.filetype_extend("typescript", { "javascript" })
-    ls.filetype_extend("typescriptreact", { "typescript", "javascript" })
-    ls.filetype_extend("javascriptreact", { "javascript" })
-
-    -- Commande : éditer le fichier de snippets du filetype courant
-    vim.api.nvim_create_user_command("LuaSnipEdit", function()
-      require("luasnip.loaders").edit_snippet_files({
-        paths = my_snippets_path,
-        filetype = vim.bo.filetype,
-      })
-    end, { desc = "Edit LuaSnip snippet file for current filetype" })
-
-    -- 🔁 Recharger automatiquement tes snippets quand tu sauvegardes
-    vim.api.nvim_create_autocmd("BufWritePost", {
-      pattern = my_snippets_path .. "/*.lua",
-      callback = function()
-        loader.lazy_load({ paths = my_snippets_path })
-      end,
-    })
+    require("user.luasnip-helper").setup()
   end,
-  keys = {
-    { "<leader>es", "<cmd>LuaSnipEdit<CR>", desc = "Edit snippets" },
-    {
-      "<C-s>",
-      function()
-        local ls = require("luasnip")
-        ls.expand_or_jump()
-      end,
-      mode = "i",
-      desc = "Expand or jump in snippet",
-    },
-  },
 }
