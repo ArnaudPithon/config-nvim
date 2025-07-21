@@ -45,8 +45,7 @@ function M.setup_autocommands()
 end
 
 function M.setup_keymaps()
-  -- keymaps
-  vim.keymap.set("i", "<C-t>", function()
+  vim.keymap.set({ "i", "s" }, "<C-o>", function()
     if ls.expand_or_locally_jumpable() then
       ls.expand_or_jump()
     else
@@ -55,13 +54,7 @@ function M.setup_keymaps()
     end
   end, { desc = "Expand or jump in snippet" })
 
-  vim.keymap.set({ "i", "s" }, "<M-t>", function()
-    if ls.jumpable(1) then
-      ls.jump(1)
-    end
-  end, { desc = "Jump to next snippet node" })
-
-  vim.keymap.set({ "i", "s" }, "<M-s>", function()
+  vim.keymap.set({ "i", "s" }, "<C-p>", function()
     if ls.jumpable(-1) then
       ls.jump(-1)
     end
