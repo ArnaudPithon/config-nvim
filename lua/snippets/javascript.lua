@@ -45,7 +45,7 @@ return {
       name = "log contextuel",
       dscr = "Log contextuel en console",
     },
-    fmt('console.log("{}", {});\n{}', {
+    fmt("console.log('{}', {});\n{}", {
       f(function()
         return vim.fn.expand("%:t")
       end, {}),
