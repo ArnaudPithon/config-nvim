@@ -1,3 +1,10 @@
-plugged
-log
-nvim_exec2\(\)\ called\ at\ 
+tt.*
+.tests
+doc/tags
+debug
+.repro
+foo.*
+*.log
+data
+lazy-lock.json
+spell/
