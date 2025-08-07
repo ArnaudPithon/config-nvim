@@ -2,7 +2,7 @@ local ls = require("luasnip")
 local i = ls.insert_node
 local s = ls.snippet
 local fmt = require("luasnip.extras.fmt").fmt
-local u = require("user.utils.snippet_utils")
+local u = require("config.utils.snippet_utils")
 local conds = require("luasnip.extras.expand_conditions")
 
 return {
